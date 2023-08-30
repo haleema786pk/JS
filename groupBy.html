@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group By Problem</title>
+</head>
+<body>
+    <h1>Group By Problem</h1>
+    <div style="background-color: lightgrey;width: 60%;margin: auto;padding: 5%;">
+        <code>
+            const array= [<br>
+            {id:1,name:"Bilal", city:"Lahore"},<br>
+            {id:1,name:"Bilal", city:"Lahore"},<br>
+            {id:3,name:"Hafsa", city:"Karachi"},<br>
+            {id:4,name:"Rehan", city:"Lahore"},<br>
+            {id:5,name:"Saqib", city:"Karachi"},<br>
+            {id:6,name:"Farhan", city:"Islamabad"}<br>
+        ]<br>
+    </code>
+        Output appears here:
+        <div id="ans" style="background-color: white;"></div>
+    </div>
+    <script>
+        const array= [
+            {id:1,name:"Bilal", city:"Lahore"},
+            {id:1,name:"Bilal", city:"Lahore"},
+            {id:3,name:"Hafsa", city:"Karachi"},
+            {id:4,name:"Rehan", city:"Lahore"},
+            {id:5,name:"Saqib", city:"Karachi"},
+            {id:6,name:"Farhan", city:"Islamabad"}
+        ]
+
+        function groupBy(arr,key) {
+            let result={};
+            for(const item of arr)
+            {
+                let k=item[key];
+                if(!result[k])
+                {
+                    result[k]=[];
+                }
+                result[k].push(item);
+            }
+
+            return result;
+        }
+        let k=prompt("Enter Key ");
+        let output=groupBy(array,k);
+        console.log(output);
+        let ans="";
+        for(item in output)
+        {
+            ans+=item+"  "+"<br>";
+            for(i of output[item])
+            {
+               ans+=JSON.stringify(i)+"<br>";
+            }
+            ans+="<hr>"
+        }
+
+        document.getElementById("ans").innerHTML=(ans);
+    </script>
+</body>
+</html>
