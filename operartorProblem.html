@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Problem</title>
+</head>
+<body>
+    <h1>Operator Problem</h1>
+    <div style="background-color: lightgrey;width: 60%;margin: auto;padding: 5%;">
+        <code>
+            const arr = ['OR', ["<", "a", "b"], ['AND', ["==", "c", "d"], ["!=", "e", "f"]]];
+        ]<br>
+    </code>
+    <button onclick=show()><span id="count">Output Appears here</span></button>
+        <div id="ans" style="background-color: white;padding: 2%;"></div>
+    </div>
+
+    <script>
+        let arr=['OR',["<","a","b"],['AND',["==","c","d"],["!=","e","f"]]];
+
+        //"a > b OR (c == d OR e != f)"
+        function operatorProblem(arr){
+            if (Array.isArray(arr)) {
+                const opt = arr[0];
+                const opd = arr.slice(1);
+                if (opt === 'OR' || opt === 'AND') {
+                    const operatorString = opt === 'OR' ? 'OR' : 'AND';
+                    console.log("opd : "+opd);
+                    const operandStrings = opd.map(operatorProblem);
+                    console.log(`(${operandStrings.join(` ${operatorString} `)})`);
+                    return `(${operandStrings.join(` ${operatorString} `)})`;
+                }
+                else if (opt === '<' || opt === '==' || opt === '!=') {
+                    console.log(`${opd[0]} ${opt} ${opd[1]}`);
+                    return `${opd[0]} ${opt} ${opd[1]}`;
+                } 
+            }
+            return arr;
+        }
+        function show()
+        {
+            const result = operatorProblem(arr);
+            console.log(result);
+            document.getElementById('ans').innerHTML=result;
+        }
+
+//const arr = ['OR', ["<", "a", "b"], ['AND', ["==", "c", "d"], ["!=", "e", "f"]]];
+
+
+
+        let count=(function out()
+        {
+            let counter=0;
+            return function () {counter += 1; return counter}
+        })();
+        function change() {
+            document.getElementById('count').innerHTML=count();
+        }
+        
+        // console.log("Array to string : "+JSON.stringify(arr));
+        
+        //    Compose
+        // 
+        // let user={
+        //     name: "sadia",
+        //     active:true,
+        //     cart:[],
+        //     purchase:[]
+        // }
+
+        // const compose=(f,g)=>(...args)=>f(g(...args));
+        // const purchaseItems=(...fns)=>fns.reduce(compose);
+
+        // function addItemToCart(user,item){
+        //     const updatedCart=user.cart.concat(item);
+        //     return Object.assign({},user,{cart:updatedCart});
+        // }
+        // function applyTaxToItems(user)
+        // {
+        //     const {cart}=user;
+        //     const tax=1.5;
+        //     const updatedCart=cart.map(item=>{
+        //         return {
+        //             name:item.name,
+        //             price: item.price*tax
+        //         }
+        //     });
+        //     return Object.assign({},user,{cart:updatedCart});
+
+        // }
+        // function buyItem(user)
+        // {
+        //     return Object.assign({},user,{purchase:user.cart});
+        // }
+        // function emptyCart(user)
+        // {
+        //     return Object.assign({},user,{cart:[]})
+        // }
+        // console.log(purchaseItems(
+        // emptyCart,
+        // buyItem,
+        // applyTaxToItems,    
+        // addItemToCart
+        // )(user,{name:"laptop",price:300})); 
+    </script>
+    
+</body>
+</html>
