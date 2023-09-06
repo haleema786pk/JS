@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delay Problem</title>
+</head>
+<body>
+   <h1>Delay Problem</h1>
+   <h2 id="a"></h2>
+   <h3 id="b"></h3>
+   <h4 id="c"></h4>
+
+   <script>
+    const promisify=(item,delay,pos)=>new Promise((resolve)=>setTimeout(()=>document.getElementById(item).innerHTML="I'm here "+pos,delay));
+    const a=promisify('a',1000,"First");
+    const b=promisify('b',2000,"Second");
+    const c=promisify('c',3000,"third");
+   </script>
+</body>
+</html>
