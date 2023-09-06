@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Problem</title>
+</head>
+<body>
+    <h1>Array Problem</h1>
+    <div style="background-color: lightgrey;width: 60%;margin: auto;padding: 5%;">
+        <code>
+            const array=[<br>
+            {id:"one", next:"two", value:null},<br>
+            {id:"two", next:"three", value:null},<br>
+            id:"three", next:null, value:null<br>
+        ]<br>
+    </code><br>
+    <button onclick=show()><span id="count">Output Appears here</span></button>
+        <div id="ans" style="background-color: white;padding: 2%;"></div>
+    </div>
+    <script>
+
+        const array=[
+    {id:"one", next:"two", value:null},
+    {id:"two", next:"three", value:null},
+    {id:"three", next:null, value:null}
+]
+
+for (let i = 0; i < array.length; i++) {
+    for (let j=0;j < array.length; j++) {
+        if(array[j].id===array[i].next)
+        {
+            array[i].value=array[j];
+        }        
+    }
+}
+let txt="";
+array.forEach(element => {
+    txt+=JSON.stringify(element)+"<br>";
+});
+function show()
+{
+    document.getElementById('ans').innerHTML=txt;
+}
+
+    </script>
+</body>
+</html>
